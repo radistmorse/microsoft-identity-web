@@ -26,6 +26,7 @@ jobs:
           sonar.exclusions=tests\**
     - task: DotNetCoreCLI@2
       inputs:
+        solution: 'Microsoft.Identity.Web.sln'
         command: 'restore'
     - task: MSBuild@1
       inputs:
