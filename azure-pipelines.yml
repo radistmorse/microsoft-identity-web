@@ -56,6 +56,7 @@ jobs:
       command: 'restore'
   - task: DotNetCoreCLI@2
     inputs:
+      solution: 'Microsoft.Identity.Web.sln'
       command: 'build'
   - task: DotNetCoreCLI@2
     displayName: 'Run unit tests'
