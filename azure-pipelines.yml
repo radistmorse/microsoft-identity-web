@@ -14,6 +14,7 @@ jobs:
     demands:
     - msbuild
   steps:
+    - template: build/template-install-dotnet-core.yaml
     - task: SonarCloudPrepare@1
       inputs:
         SonarCloud: 'SonarCloud'
