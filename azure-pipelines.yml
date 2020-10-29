@@ -33,6 +33,7 @@ jobs:
     - task: DotNetCoreCLI@2
       displayName: 'Run unit tests'
       inputs:
+        solution: 'Microsoft.Identity.Web.sln'
         command: test
         projects: 'tests/Microsoft.Identity.Web.Test*.csproj'
         arguments: '--no-build --no-restore --collect "Code coverage"'
