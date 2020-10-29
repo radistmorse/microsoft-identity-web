@@ -52,6 +52,7 @@ jobs:
   steps:
   - task: DotNetCoreCLI@2
     inputs:
+      solution: 'Microsoft.Identity.Web.sln'
       command: 'restore'
   - task: DotNetCoreCLI@2
     inputs:
