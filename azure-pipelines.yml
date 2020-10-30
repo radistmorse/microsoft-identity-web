@@ -31,6 +31,7 @@ jobs:
     - task: MSBuild@1
       inputs:
         solution: 'Microsoft.Identity.Web.sln'
+        msbuildArgs: '/p:RunCodeAnalysis=false /p:TargetFramework=netcoreapp3.1 /p:MsIdentityWebSemVer=${{ parameters.MsIdentityWebSemVer }} /p:SourceLinkCreate=true'
     - task: DotNetCoreCLI@2
       displayName: 'Run unit tests'
       inputs:
@@ -41,26 +42,3 @@ jobs:
     - task: SonarCloudPublish@1
       inputs:
         pollingTimeoutSec: '300'
-
-- job: "Build_and_test"
-  strategy:
-    matrix:
-      windows:
-        imageName: 'windows-latest'
-  pool:
-    vmImage: $(imageName)
-  steps:
-  - task: DotNetCoreCLI@2
-    inputs:
-      solution: 'Microsoft.Identity.Web.sln'
-      command: 'restore'
-  - task: DotNetCoreCLI@2
-    inputs:
-      solution: 'Microsoft.Identity.Web.sln'
-      command: 'build'
-  - task: DotNetCoreCLI@2
-    displayName: 'Run unit tests'
-    inputs:
-      command: test
-      projects: 'tests/Microsoft.Identity.Web.Test*.csproj'
-      arguments: '--no-build --no-restore --collect "Code coverage"'
