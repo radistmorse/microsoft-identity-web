@@ -28,10 +28,13 @@ jobs:
       inputs:
         projects: 'Microsoft.Identity.Web.sln'
         command: 'restore'
-    - task: MSBuild@1
-      inputs:
-        solution: 'Microsoft.Identity.Web.sln'
+    - task: VSBuild@1
+     inputs:
+        solution: Microsoft.Identity.Web-without-blasorwasm2-sample.sln
+        vsVersion: '16.0'
         msbuildArgs: '/p:RunCodeAnalysis=false /p:TargetFramework=netcoreapp3.1 /p:MsIdentityWebSemVer=${{ parameters.MsIdentityWebSemVer }} /p:SourceLinkCreate=true'
+        platform: ${{ parameters.BuildPlatform }}
+        configuration: ${{ parameters.BuildConfiguration }}
     - task: DotNetCoreCLI@2
       displayName: 'Run unit tests'
       inputs:
