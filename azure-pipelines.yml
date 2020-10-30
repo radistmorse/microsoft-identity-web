@@ -31,7 +31,7 @@ jobs:
     - task: MSBuild@1
       inputs:
       solution: Microsoft.Identity.Web-without-blasorwasm2-sample.sln
-        msbuildArgs: '/p:RunCodeAnalysis=false /p:TargetFramework=netcoreapp3.1'
+        msbuildArgs: '/p:TargetFramework=netcoreapp3.1'
     - task: DotNetCoreCLI@2
       displayName: 'Run unit tests'
       inputs:
